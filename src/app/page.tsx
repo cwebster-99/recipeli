@@ -88,38 +88,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="rankings" className="rounded-[2.4rem] border border-white/10 bg-black/16 p-6 sm:p-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.26em] text-[var(--muted)]">Your board</p>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl leading-none text-[var(--foreground)] sm:text-5xl">
-              Your top recipes
-            </h2>
-          </div>
-          <Link
-            href="/discover"
-            className="text-sm uppercase tracking-[0.18em] text-[var(--muted)] transition hover:text-[var(--accent)]"
-          >
-            Compare &amp; discover &rarr;
-          </Link>
-        </div>
-        <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">
-          Ranked by head-to-head comparisons. Cook a recipe and compare it against your board to find where it belongs.
-        </p>
-        {authRequired ? (
-          <p className="mt-4 text-sm text-[var(--muted)]">
-            Sign in to view your personal board.
-            {" "}
-            <Link href="/login" className="text-[var(--accent)] transition hover:text-[var(--accent-strong)]">
-              Continue to login
+      {!authRequired && loaded && (
+        <section id="rankings" className="rounded-[2.4rem] border border-white/10 bg-black/16 p-6 sm:p-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.26em] text-[var(--muted)]">Your board</p>
+              <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl leading-none text-[var(--foreground)] sm:text-5xl">
+                Your top recipes
+              </h2>
+            </div>
+            <Link
+              href="/discover"
+              className="text-sm uppercase tracking-[0.18em] text-[var(--muted)] transition hover:text-[var(--accent)]"
+            >
+              Compare &amp; discover &rarr;
             </Link>
-            .
+          </div>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">
+            Ranked by head-to-head comparisons. Cook a recipe and compare it against your board to find where it belongs.
           </p>
-        ) : null}
-        <div className="mt-8">
-          <RankingList recipes={boardRecipes} />
-        </div>
-      </section>
+          <div className="mt-8">
+            <RankingList recipes={boardRecipes} />
+          </div>
+        </section>
+      )}
 
       <section className="rounded-[2.4rem] border border-white/10 bg-black/16 p-6 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

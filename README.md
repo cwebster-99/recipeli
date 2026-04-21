@@ -1,4 +1,4 @@
-# Recipe Ranker
+# Recipeli 
 
 A web-first recipe ranking app built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.
 

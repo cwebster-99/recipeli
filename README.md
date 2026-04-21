@@ -9,6 +9,8 @@ Recipeli is a web-first recipe tracking app inspired by the strongest Beli mecha
 - Tailwind CSS v4
 - Local in-repo sample data for recipes and ranking state
 
+- anothjer change 
+
 ## Current product slice
 
 - Landing page with product positioning and ranking-first UI

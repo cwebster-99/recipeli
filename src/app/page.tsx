@@ -49,7 +49,7 @@ export default function Home() {
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div className="space-y-6">
             <h1 className="max-w-4xl font-[family-name:var(--font-display)] text-5xl leading-[0.92] text-[var(--foreground)] sm:text-6xl">
-              Welcome.
+              Welcome!!!
             </h1>
             <p className="max-w-xl text-base leading-7 text-[var(--muted)]">
               Save recipes, cook them, rate them, and let the board surface what actually deserves a spot.

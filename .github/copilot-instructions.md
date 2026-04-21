@@ -1,7 +1,7 @@
-# Copilot Instructions for Recipeli
+# Copilot Instructions for Recipe Ranker
 
 ## Purpose
-Recipeli is a web-first recipe ranking app built with Next.js App Router, React, and TypeScript.
+Recipe Ranker is a web-first recipe ranking app built with Next.js App Router, React, and TypeScript.
 
 Read the product context and roadmap first:
 - README: ../README.md

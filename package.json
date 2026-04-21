@@ -1,5 +1,5 @@
 {
-  "name": "recipeli",
+  "name": "recipe-ranker",
   "version": "1.0.0",
   "description": "Web-first recipe ranking app inspired by Beli.",
   "private": true,
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cwebster-99/recipeli.git"
+    "url": "git+https://github.com/cwebster-99/recipe-ranker.git"
   },
   "keywords": [
     "nextjs",
@@ -22,9 +22,9 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cwebster-99/recipeli/issues"
+    "url": "https://github.com/cwebster-99/recipe-ranker/issues"
   },
-  "homepage": "https://github.com/cwebster-99/recipeli#readme",
+  "homepage": "https://github.com/cwebster-99/recipe-ranker#readme",
   "dependencies": {
     "better-sqlite3": "^12.8.0",
     "next": "^16.2.0",

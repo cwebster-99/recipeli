@@ -1,6 +1,6 @@
-# Recipeli
+# Recipe Ranker
 
-Recipeli is a web-first recipe tracking app inspired by the strongest Beli mechanic: expressing taste through rankings. The first implementation in this repository focuses on discovery, recipe detail, a personal ranking board, and the opening shell of a user-submitted recipe flow.
+Recipe Ranker is a web-first recipe tracking app inspired by the strongest Beli mechanic: expressing taste through rankings. The first implementation in this repository focuses on discovery, recipe detail, a personal ranking board, and the opening shell of a user-submitted recipe flow.
 
 ## Current stack
 

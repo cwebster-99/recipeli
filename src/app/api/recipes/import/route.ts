@@ -63,7 +63,7 @@ export async function POST(request: Request) {
       redirect: "follow",
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       headers: {
-        "user-agent": "RecipeliBot/1.0 (+https://recipeli.local)",
+        "user-agent": "RecipeRankerBot/1.0 (+https://recipe-ranker.local)",
         accept: "text/html,application/xhtml+xml"
       }
     });

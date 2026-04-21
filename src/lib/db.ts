@@ -4,7 +4,7 @@ import path from "path";
 
 import type { Recipe } from "./recipes";
 
-const DB_PATH = path.join(process.cwd(), "data", "recipeli.db");
+const DB_PATH = path.join(process.cwd(), "data", "recipe-ranker.db");
 
 type RecipeRow = {
   id: string;
@@ -325,7 +325,7 @@ function seed(db: Database.Database) {
 
 declare global {
   // eslint-disable-next-line no-var
-  var __recipeliDb__: Database.Database | undefined;
+  var __recipeRankerDb__: Database.Database | undefined;
 }
 
 function getDb(): Database.Database {
@@ -333,11 +333,11 @@ function getDb(): Database.Database {
     throw new Error("Database is not available on the client.");
   }
 
-  if (!globalThis.__recipeliDb__) {
-    globalThis.__recipeliDb__ = openDatabase();
+  if (!globalThis.__recipeRankerDb__) {
+    globalThis.__recipeRankerDb__ = openDatabase();
   }
 
-  return globalThis.__recipeliDb__;
+  return globalThis.__recipeRankerDb__;
 }
 
 export const db = new Proxy({} as Database.Database, {

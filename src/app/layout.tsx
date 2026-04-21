@@ -6,7 +6,7 @@ import { NavHeader } from "@/components/nav-header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Recipeli",
+  title: "Recipe Ranker",
   description: "A web-first recipe tracker built around taste, memory, composite rankings, and head-to-head comparisons."
 };
 

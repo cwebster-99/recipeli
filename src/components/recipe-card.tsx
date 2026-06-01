@@ -35,7 +35,6 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
         <h3 className="font-[family-name:var(--font-display)] text-3xl leading-none text-[var(--foreground)]">
           {recipe.title}
         </h3>
-        <p className="text-sm leading-6 text-[var(--muted)]">{recipe.summary}</p>
       </div>
 
       <dl className="mt-6 grid grid-cols-3 gap-3 text-sm text-[var(--foreground)]">

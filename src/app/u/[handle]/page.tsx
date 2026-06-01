@@ -3,10 +3,12 @@ import type { Route } from "next";
 
 import { FollowButton } from "@/components/follow-button";
 import { RankingList } from "@/components/ranking-list";
+import { CollectionsList } from "@/components/collections-list";
 import { getAuthSession } from "@/lib/auth";
 import { getRankedRecipes } from "@/lib/recipes";
 import { canViewProfile, getFollowerCount, getFollowingCount, isFollowing } from "@/lib/social";
 import { getUserByHandle } from "@/lib/users";
+import { getPublicCollectionsByUser } from "@/lib/collections";
 
 type UserProfilePageProps = {
   params: Promise<{ handle: string }>;
@@ -58,6 +60,7 @@ export default async function UserProfilePage({ params }: UserProfilePageProps) 
   const followingCount = getFollowingCount(profile.id);
   const isOwner = viewerId === profile.id;
   const following = viewerId && !isOwner ? isFollowing(viewerId, profile.id) : false;
+  const collections = getPublicCollectionsByUser(profile.id);
 
   return (
     <main className="space-y-8">
@@ -97,6 +100,15 @@ export default async function UserProfilePage({ params }: UserProfilePageProps) 
           <RankingList recipes={ranked} />
         </div>
       </section>
+
+      {collections.length > 0 && (
+        <section className="rounded-[2.4rem] border border-white/10 bg-black/16 p-6 sm:p-8">
+          <p className="text-sm uppercase tracking-[0.24em] text-[var(--muted)]">Recipe collections</p>
+          <div className="mt-6">
+            <CollectionsList collections={collections} />
+          </div>
+        </section>
+      )}
     </main>
   );
 }

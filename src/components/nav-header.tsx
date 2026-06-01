@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 
 const privateNavLinks: { href: Route; label: string }[] = [
   { href: "/discover", label: "Discover" },
+  { href: "/cookbook", label: "Cookbook" },
+  { href: "/collections", label: "Collections" },
   { href: "/submit", label: "Submit" }
 ];
 

@@ -158,9 +158,6 @@ export function RankFlow({
             <p className="font-[family-name:var(--font-display)] text-2xl text-[var(--foreground)] group-hover:text-[var(--accent)]">
               {recipeTitle}
             </p>
-            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
-              The one you just made
-            </p>
           </button>
 
           <button
@@ -170,9 +167,6 @@ export function RankFlow({
           >
             <p className="font-[family-name:var(--font-display)] text-2xl text-[var(--foreground)] group-hover:text-[var(--accent)]">
               {opponent.title}
-            </p>
-            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
-              Currently #{(mid ?? 0) + 1} on your board
             </p>
           </button>
         </div>

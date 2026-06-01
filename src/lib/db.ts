@@ -166,6 +166,57 @@ function runMigrations(db: Database.Database) {
 
     tx();
   }
+
+  if (!hasMigration(db, 2)) {
+    const tx = db.transaction(() => {
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS collections (
+          id TEXT PRIMARY KEY,
+          user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          name TEXT NOT NULL,
+          description TEXT NOT NULL DEFAULT '',
+          is_public INTEGER NOT NULL DEFAULT 0,
+          created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+          updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+          UNIQUE (user_id, name)
+        );
+
+        CREATE TABLE IF NOT EXISTS collection_recipes (
+          collection_id TEXT NOT NULL REFERENCES collections(id) ON DELETE CASCADE,
+          recipe_id TEXT NOT NULL REFERENCES recipes(id) ON DELETE CASCADE,
+          added_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+          PRIMARY KEY (collection_id, recipe_id)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_collections_user ON collections (user_id);
+        CREATE INDEX IF NOT EXISTS idx_collection_recipes_recipe ON collection_recipes (recipe_id);
+      `);
+
+      markMigration(db, 2);
+    });
+
+    tx();
+  }
+
+  if (!hasMigration(db, 3)) {
+    const tx = db.transaction(() => {
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS cookbook_entries (
+          user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          recipe_id TEXT NOT NULL REFERENCES recipes(id) ON DELETE CASCADE,
+          added_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+          PRIMARY KEY (user_id, recipe_id)
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_cookbook_entries_user ON cookbook_entries (user_id, added_at);
+        CREATE INDEX IF NOT EXISTS idx_cookbook_entries_recipe ON cookbook_entries (recipe_id);
+      `);
+
+      markMigration(db, 3);
+    });
+
+    tx();
+  }
 }
 
 function seed(db: Database.Database) {
@@ -324,7 +375,6 @@ function seed(db: Database.Database) {
 }
 
 declare global {
-  // eslint-disable-next-line no-var
   var __recipeliDb__: Database.Database | undefined;
 }
 

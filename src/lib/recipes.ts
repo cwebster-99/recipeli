@@ -109,7 +109,7 @@ function mapTrendingRow(row: TrendingRecipeRow): TrendingRecipe {
   };
 }
 
-function withUserStateSelect(userId: string) {
+function withUserStateSelect(_userId: string) {
   return `
     SELECT
       r.id,

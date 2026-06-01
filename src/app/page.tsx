@@ -55,36 +55,34 @@ export default function Home() {
               Save recipes, cook them, rate them, and let the board surface what actually deserves a spot.
             </p>
 
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/submit"
-                className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--background)] transition hover:bg-[var(--foreground)]"
-              >
-                Submit a recipe
-              </Link>
-              <Link
-                href="/discover"
-                className="rounded-full border border-white/12 px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--foreground)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
-              >
-                Discover recipes
-              </Link>
-            </div>
+            {!authRequired && loaded && (
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/submit"
+                  className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--background)] transition hover:bg-[var(--foreground)]"
+                >
+                  Submit a recipe
+                </Link>
+              </div>
+            )}
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 backdrop-blur-md">
-              <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">Ranked</p>
-              <p className="mt-3 font-[family-name:var(--font-display)] text-4xl text-[var(--foreground)]">{boardRecipes.length}</p>
+          {!authRequired && loaded && (
+            <div className="grid grid-cols-3 gap-4">
+              <div className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 backdrop-blur-md">
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">Ranked</p>
+                <p className="mt-3 font-[family-name:var(--font-display)] text-4xl text-[var(--foreground)]">{boardRecipes.length}</p>
+              </div>
+              <div className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 backdrop-blur-md">
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">To try</p>
+                <p className="mt-3 font-[family-name:var(--font-display)] text-4xl text-[var(--foreground)]">{discoveryCount}</p>
+              </div>
+              <div className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 backdrop-blur-md">
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">Total</p>
+                <p className="mt-3 font-[family-name:var(--font-display)] text-4xl text-[var(--foreground)]">{totalCount}</p>
+              </div>
             </div>
-            <div className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 backdrop-blur-md">
-              <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">To try</p>
-              <p className="mt-3 font-[family-name:var(--font-display)] text-4xl text-[var(--foreground)]">{discoveryCount}</p>
-            </div>
-            <div className="rounded-[1.6rem] border border-white/10 bg-black/20 p-5 backdrop-blur-md">
-              <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted)]">Total</p>
-              <p className="mt-3 font-[family-name:var(--font-display)] text-4xl text-[var(--foreground)]">{totalCount}</p>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -114,19 +112,11 @@ export default function Home() {
       )}
 
       <section className="rounded-[2.4rem] border border-white/10 bg-black/16 p-6 sm:p-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.26em] text-[var(--muted)]">Community picks</p>
-            <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl leading-none text-[var(--foreground)] sm:text-5xl">
-              Trending recipes
-            </h2>
-          </div>
-          <Link
-            href="/discover"
-            className="text-sm uppercase tracking-[0.18em] text-[var(--muted)] transition hover:text-[var(--accent)]"
-          >
-            Browse all recipes &rarr;
-          </Link>
+        <div>
+          <p className="text-sm uppercase tracking-[0.26em] text-[var(--muted)]">Community picks</p>
+          <h2 className="mt-3 font-[family-name:var(--font-display)] text-4xl leading-none text-[var(--foreground)] sm:text-5xl">
+            Trending recipes
+          </h2>
         </div>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">
           Recipes with the most likes from the community, updated as people react.
@@ -165,6 +155,14 @@ export default function Home() {
             ))}
           </ol>
         )}
+        <div className="mt-8 text-center">
+          <Link
+            href="/discover"
+            className="text-sm uppercase tracking-[0.18em] text-[var(--muted)] transition hover:text-[var(--accent)]"
+          >
+            Browse all recipes &rarr;
+          </Link>
+        </div>
       </section>
     </main>
   );

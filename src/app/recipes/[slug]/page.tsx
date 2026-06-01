@@ -4,7 +4,10 @@ import type { Route } from "next";
 import { BackLink } from "@/components/back-link";
 import { RecipeActions } from "@/components/recipe-actions";
 import { RecipeLikeButton } from "@/components/recipe-like-button";
+import { CollectionSelector } from "@/components/collection-selector";
+import { CookbookButton } from "@/components/cookbook-button";
 import { getAuthSession } from "@/lib/auth";
+import { isRecipeInCookbook } from "@/lib/cookbook";
 import { getAllRecipes, getRecipeBySlug, getRankedRecipes } from "@/lib/recipes";
 import { getRecipeLikeSummary } from "@/lib/social";
 
@@ -41,6 +44,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
     .filter((r) => r.id !== recipe.id)
     .map((r) => ({ id: r.id, title: r.title, cuisine: r.cuisine }));
   const likeSummary = getRecipeLikeSummary(recipe.id, userId);
+  const inCookbook = isRecipeInCookbook(userId, recipe.id);
 
   return (
     <main className="grid gap-8 lg:grid-cols-[0.75fr_0.25fr]">
@@ -63,7 +67,6 @@ export default async function RecipePage({ params }: RecipePageProps) {
           <h1 className="font-[family-name:var(--font-display)] text-5xl leading-[0.92] text-[var(--foreground)] sm:text-6xl">
             {recipe.title}
           </h1>
-          <p className="max-w-2xl text-base leading-7 text-[var(--muted)]">{recipe.summary}</p>
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -163,6 +166,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
           recipeStage={recipe.stage}
           rankedRecipes={rankedForComparison}
         />
+        <CookbookButton recipeId={recipe.id} initialInCookbook={inCookbook} />
+        <CollectionSelector recipeId={recipe.id} />
         <RecipeLikeButton
           recipeId={recipe.id}
           initialLiked={likeSummary.likedByUser}
